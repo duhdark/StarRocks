@@ -1,0 +1,6 @@
+* [Главная](/)
+* [Быстрый старт](quickstart.md)
+* [Single Node](single-node.md)
+* [Cluster](cluster.md)
+* [Мониторинг](monitoring.md)
+* [Troubleshooting](troubleshooting.md) 
