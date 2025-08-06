@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  starrocks-fe:
+    image: starrocks/fe-ubuntu:3.2.0
+    container_name: starrocks-fe
+    hostname: starrocks-fe
+    environment:
+      - FE_SERVERS=starrocks-fe:9010
+      - PRIORITY_NETWORKS=172.16.0.0/12
+    ports:
+      - "9030:9030"  # HTTP port
+      - "9010:9010"  # Edit log port
+      - "9020:9020"  # RPC port
+    volumes:
+      - fe-data:/opt/starrocks/fe/meta
+      - fe-log:/opt/starrocks/fe/log
+    networks:
+      - starrocks-network
+    command: >
+      sh -c "
+        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/fe/conf/fe.conf &&
+        /opt/starrocks/fe/bin/start_fe.sh --daemon &&
+        tail -f /opt/starrocks/fe/log/fe.log
+      "
+
+  starrocks-be:
+    image: starrocks/be-ubuntu:3.2.0
+    container_name: starrocks-be
+    hostname: starrocks-be
+    environment:
+      - FE_SERVERS=starrocks-fe:9010
+      - PRIORITY_NETWORKS=172.16.0.0/12
+    ports:
+      - "9060:9060"  # HTTP port
+      - "8040:8040"  # BE port
+      - "8060:8060"  # BRPC port
+      - "9050:9050"  # Heartbeat port
+    volumes:
+      - be-data:/opt/starrocks/be/storage
+      - be-log:/opt/starrocks/be/log
+    networks:
+      - starrocks-network
+    depends_on:
+      - starrocks-fe
+    command: >
+      sh -c "
+        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/be/conf/be.conf &&
+        sleep 30 &&
+        /opt/starrocks/be/bin/start_be.sh --daemon &&
+        tail -f /opt/starrocks/be/log/be.log
+      "
+
+volumes:
+  fe-data:
+  fe-log:
+  be-data:
+  be-log:
+
+networks:
+  starrocks-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/12 
