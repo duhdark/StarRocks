@@ -103,12 +103,12 @@ docker exec -it starrocks-be bash
 
 ```
 starrocks-single-node/
-├── docker-compose.yml    # Конфигурация Docker Compose
-├── connect.ps1          # Скрипт подключения
-├── manage.ps1           # Скрипт управления
-├── examples.sql         # Примеры SQL запросов
-├── README.md            # Документация
-└── init.sql             # Скрипт инициализации БД
+├── docker-compose.yml      # Конфигурация Docker Compose
+├── connect.ps1             # Скрипт подключения
+├── manage.ps1              # Скрипт управления
+├── examples.sql            # Примеры SQL запросов
+├── README.md               # Документация
+└── init.sql                # Скрипт инициализации БД
 ```
 
 ## 🔧 Конфигурация

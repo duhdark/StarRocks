@@ -95,12 +95,12 @@ SHOW PROC '/tablets';
 
 ```
 starrocks-cluster/
-├── docker-compose.yml    # Конфигурация кластера
-├── connect.ps1          # Скрипт подключения
-├── manage.ps1           # Скрипт управления
-├── examples.sql         # Примеры SQL запросов
-├── init-cluster.sql     # Инициализация кластера
-└── README.md            # Документация
+├── docker-compose.yml      # Конфигурация кластера
+├── connect.ps1             # Скрипт подключения
+├── manage.ps1              # Скрипт управления
+├── examples.sql            # Примеры SQL запросов
+├── init-cluster.sql        # Инициализация кластера
+└── README.md               # Документация
 ```
 
 ## 🔧 Конфигурация кластера

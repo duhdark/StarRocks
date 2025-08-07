@@ -78,26 +78,26 @@ SELECT * FROM test_db.users LIMIT 5;
 ```
 StarRocks/
 ├── README.md                    # Основная документация
-├── CHANGELOG.md                # История изменений
-├── LICENSE                     # MIT лицензия
-├── .gitignore                  # Git ignore файл
-├── monitoring-examples.md      # Примеры мониторинга
-├── starrocks-single-node/     # Однодоступная конфигурация
-│   ├── docker-compose.yml     # Docker Compose
-│   ├── README.md             # Документация
-│   ├── manage.ps1            # PowerShell скрипт управления
-│   ├── connect.ps1           # Скрипт подключения
-│   ├── examples.sql          # Примеры SQL запросов
-│   ├── init.sql              # SQL инициализация
-│   └── CHANGELOG.md          # История изменений
-└── starrocks-cluster/        # Кластерная конфигурация
-    ├── docker-compose.yml    # Docker Compose кластера
-    ├── README.md            # Документация кластера
-    ├── manage.ps1           # PowerShell скрипт управления
-    ├── connect.ps1          # Скрипт подключения
-    ├── examples.sql         # Примеры SQL запросов
-    ├── init-cluster.sql     # SQL инициализация кластера
-    └── CHANGELOG.md         # История изменений
+├── CHANGELOG.md                 # История изменений
+├── LICENSE                      # MIT лицензия
+├── .gitignore                   # Git ignore файл
+├── monitoring-examples.md       # Примеры мониторинга
+├── starrocks-single-node/       # Однодоступная конфигурация
+│   ├── docker-compose.yml       # Docker Compose
+│   ├── README.md                # Документация
+│   ├── manage.ps1               # PowerShell скрипт управления
+│   ├── connect.ps1              # Скрипт подключения
+│   ├── examples.sql             # Примеры SQL запросов
+│   ├── init.sql                 # SQL инициализация
+│   └── CHANGELOG.md             # История изменений
+└── starrocks-cluster/           # Кластерная конфигурация
+    ├── docker-compose.yml       # Docker Compose кластера
+    ├── README.md                # Документация кластера
+    ├── manage.ps1               # PowerShell скрипт управления
+    ├── connect.ps1              # Скрипт подключения
+    ├── examples.sql             # Примеры SQL запросов
+    ├── init-cluster.sql         # SQL инициализация кластера
+    └── CHANGELOG.md             # История изменений
 ```
 
 ## 📊 Сравнение конфигураций
