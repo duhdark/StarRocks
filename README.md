@@ -89,7 +89,6 @@ StarRocks/
 │   ├── connect.ps1              # Скрипт подключения
 │   ├── examples.sql             # Примеры SQL запросов
 │   ├── init.sql                 # SQL инициализация
-│   └── CHANGELOG.md             # История изменений
 └── starrocks-cluster/           # Кластерная конфигурация
     ├── docker-compose.yml       # Docker Compose кластера
     ├── README.md                # Документация кластера
@@ -97,7 +96,6 @@ StarRocks/
     ├── connect.ps1              # Скрипт подключения
     ├── examples.sql             # Примеры SQL запросов
     ├── init-cluster.sql         # SQL инициализация кластера
-    └── CHANGELOG.md             # История изменений
 ```
 
 ## 📊 Сравнение конфигураций
@@ -227,12 +225,10 @@ SHOW PROC '/tablets'\G
 ### Single Node
 - [Руководство по развертыванию](starrocks-single-node/README.md)
 - [Примеры SQL запросов](starrocks-single-node/examples.sql)
-- [История изменений](starrocks-single-node/CHANGELOG.md)
 
 ### Cluster
 - [Руководство по развертыванию](starrocks-cluster/README.md)
 - [Примеры SQL запросов](starrocks-cluster/examples.sql)
-- [История изменений](starrocks-cluster/CHANGELOG.md)
 
 ## 🐛 Troubleshooting
 
