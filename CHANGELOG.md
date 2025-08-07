@@ -1,79 +1,90 @@
-# Changelog
+# 📋 История изменений
 
-All notable changes to this project will be documented in this file.
+## [2.1.0] - 2024-12-19
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### 🎯 Дальнейшая оптимизация репозитория
+- **Объединены README.md и QUICKSTART.md**: Устранено дублирование документации
+- **Удален test-deployment.sh**: Несовместимость с PowerShell экосистемой
+- **Улучшена структура README.md**: Добавлено оглавление и четкая навигация
+- **Упрощена документация**: Один качественный файл вместо двух
+
+### 📚 Документация
+- Создано единое оглавление с навигацией
+- Объединены разделы быстрого старта
+- Улучшена структура troubleshooting
+- Добавлены все необходимые команды в один файл
+
+### 🗂️ Структурные изменения
+- Удален QUICKSTART.md (информация интегрирована в README.md)
+- Удален test-deployment.sh (заменен PowerShell скриптами)
+- Упрощена навигация по документации
+
+## [2.0.0] - 2024-12-19
+
+### 🎯 Оптимизация репозитория
+- **Удалены лишние файлы**: GITHUB_SETUP.md, docs/, .github/
+- **Объединена документация**: Устранено дублирование между файлами
+- **Оптимизирован README.md**: Структурированная документация с PowerShell скриптами
+- **Улучшен QUICKSTART.md**: Краткое и понятное руководство
+- **Удален REPOSITORY_SUMMARY.md**: Информация интегрирована в основной README
+
+### 📁 Структурные изменения
+- Упрощена структура репозитория
+- Удалены неиспользуемые директории
+- Оптимизированы пути к файлам
+
+### 📚 Документация
+- Обновлены ссылки на PowerShell скрипты
+- Добавлены примеры использования manage.ps1 и connect.ps1
+- Улучшена навигация по документации
+
+## [1.2.0] - 2024-12-19
+
+### 🚀 StarRocks Cluster
+- **Создан кластерный проект**: starrocks-cluster/
+- **3 FE + 3 BE узла**: Высокая доступность и отказоустойчивость
+- **PowerShell скрипты**: manage.ps1 и connect.ps1 для кластера
+- **Примеры SQL**: examples.sql с кластерными запросами
+- **Документация**: README.md и CHANGELOG.md для кластера
+
+### 🔧 Исправления
+- Обновлены образы StarRocks до latest
+- Исправлены сетевые конфликты
+- Улучшена стабильность запуска контейнеров
+
+## [1.1.0] - 2024-12-19
+
+### 🛠️ PowerShell скрипты
+- **manage.ps1**: Централизованное управление StarRocks
+- **connect.ps1**: Упрощенное подключение к базе данных
+- **Функции**: start, stop, restart, status, logs, connect, clean, help
+
+### 📚 Документация
+- **examples.sql**: Расширенные примеры SQL запросов
+- **CHANGELOG.md**: История изменений для single-node
+- **README.md**: Обновленная документация с PowerShell
+
+### 🔧 Исправления
+- Исправлена ошибка ValidateSet в manage.ps1
+- Улучшена обработка ошибок в скриптах
+- Добавлены русские комментарии и сообщения
 
 ## [1.0.0] - 2024-12-19
 
-### Added
-- Initial release of StarRocks Docker deployment projects
-- Single Node deployment configuration
-- Cluster deployment configuration with 3 FE + 3 BE nodes
-- Automatic testing script with health checks
-- Comprehensive monitoring examples (Prometheus, Grafana, ELK)
-- Ready-to-use SQL initialization scripts
-- Complete documentation for both configurations
-- Quick start guide
-- Troubleshooting guides
-- Security recommendations
-- Performance optimization examples
+### 🎯 Первоначальная версия
+- **StarRocks Single Node**: Полностью рабочий проект
+- **Docker Compose**: Готовая конфигурация
+- **Документация**: Подробное руководство
+- **SQL скрипты**: Примеры и инициализация
 
-### Features
-- **Single Node Project**:
-  - 1 Frontend (FE) + 1 Backend (BE) configuration
-  - Optimized for development and testing
-  - Minimal resource requirements (4GB RAM, 10GB disk)
-  - Ready-to-use test data and SQL examples
+### 📦 Созданные компоненты
+- docker-compose.yml для single-node
+- README.md с инструкциями
+- init.sql для инициализации БД
+- test-deployment.sh для автоматического тестирования
+- monitoring-examples.md для мониторинга
 
-- **Cluster Project**:
-  - 3 Frontend (FE) + 3 Backend (BE) configuration
-  - High availability and fault tolerance
-  - Data replication across nodes
-  - Production-ready setup (8GB RAM, 20GB disk)
-
-- **Automation**:
-  - `test-deployment.sh` - Automatic deployment testing
-  - Health check scripts
-  - Color-coded output for better UX
-  - Dependency verification
-
-- **Documentation**:
-  - Comprehensive README files for each project
-  - Quick start guide (QUICKSTART.md)
-  - Monitoring examples and configurations
-  - Security best practices
-  - Performance tuning guides
-
-### Technical Details
-- Docker Compose configurations
-- StarRocks version 3.2.0
-- Ubuntu-based Docker images
-- Proper networking configuration
-- Volume management for data persistence
-- Port mapping for external access
-
-### Monitoring & Observability
-- Prometheus metrics collection
-- Grafana dashboard templates
-- ELK Stack integration examples
-- Custom health check scripts
-- Alerting configurations
-- Slack/Email notification examples
-
-### Security
-- Default user configuration
-- Network isolation
-- Volume security
-- Best practices documentation
-
-## [Unreleased]
-
-### Planned
-- Kubernetes deployment configurations
-- Helm charts for StarRocks
-- Additional monitoring integrations
-- Performance benchmarking tools
-- Backup and restore automation
-- Multi-environment configurations 
+### 🚀 Готовность
+- Полная документация на русском языке
+- Автоматическое тестирование
+- Примеры мониторинга

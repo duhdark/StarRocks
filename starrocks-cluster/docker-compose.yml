@@ -1,14 +1,12 @@
-version: '3.8'
-
 services:
   # Frontend nodes
   starrocks-fe-1:
-    image: starrocks/fe-ubuntu:3.2.0
+    image: starrocks/fe-ubuntu:latest
     container_name: starrocks-fe-1
     hostname: starrocks-fe-1
     environment:
       - FE_SERVERS=starrocks-fe-1:9010,starrocks-fe-2:9010,starrocks-fe-3:9010
-      - PRIORITY_NETWORKS=172.16.0.0/12
+      - PRIORITY_NETWORKS=172.19.0.0/16
     ports:
       - "9030:9030"  # HTTP port
       - "9010:9010"  # Edit log port
@@ -20,18 +18,19 @@ services:
       - starrocks-network
     command: >
       sh -c "
-        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/fe/conf/fe.conf &&
+        echo 'priority_networks = 172.19.0.0/16' >> /opt/starrocks/fe/conf/fe.conf &&
         /opt/starrocks/fe/bin/start_fe.sh --daemon &&
+        sleep 30 &&
         tail -f /opt/starrocks/fe/log/fe.log
       "
 
   starrocks-fe-2:
-    image: starrocks/fe-ubuntu:3.2.0
+    image: starrocks/fe-ubuntu:latest
     container_name: starrocks-fe-2
     hostname: starrocks-fe-2
     environment:
       - FE_SERVERS=starrocks-fe-1:9010,starrocks-fe-2:9010,starrocks-fe-3:9010
-      - PRIORITY_NETWORKS=172.16.0.0/12
+      - PRIORITY_NETWORKS=172.19.0.0/16
     ports:
       - "9031:9030"  # HTTP port
       - "9011:9010"  # Edit log port
@@ -45,19 +44,20 @@ services:
       - starrocks-fe-1
     command: >
       sh -c "
-        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/fe/conf/fe.conf &&
+        echo 'priority_networks = 172.19.0.0/16' >> /opt/starrocks/fe/conf/fe.conf &&
         sleep 30 &&
         /opt/starrocks/fe/bin/start_fe.sh --helper starrocks-fe-1:9010 --daemon &&
+        sleep 30 &&
         tail -f /opt/starrocks/fe/log/fe.log
       "
 
   starrocks-fe-3:
-    image: starrocks/fe-ubuntu:3.2.0
+    image: starrocks/fe-ubuntu:latest
     container_name: starrocks-fe-3
     hostname: starrocks-fe-3
     environment:
       - FE_SERVERS=starrocks-fe-1:9010,starrocks-fe-2:9010,starrocks-fe-3:9010
-      - PRIORITY_NETWORKS=172.16.0.0/12
+      - PRIORITY_NETWORKS=172.19.0.0/16
     ports:
       - "9032:9030"  # HTTP port
       - "9012:9010"  # Edit log port
@@ -72,20 +72,21 @@ services:
       - starrocks-fe-2
     command: >
       sh -c "
-        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/fe/conf/fe.conf &&
+        echo 'priority_networks = 172.19.0.0/16' >> /opt/starrocks/fe/conf/fe.conf &&
         sleep 60 &&
         /opt/starrocks/fe/bin/start_fe.sh --helper starrocks-fe-1:9010 --daemon &&
+        sleep 30 &&
         tail -f /opt/starrocks/fe/log/fe.log
       "
 
   # Backend nodes
   starrocks-be-1:
-    image: starrocks/be-ubuntu:3.2.0
+    image: starrocks/be-ubuntu:latest
     container_name: starrocks-be-1
     hostname: starrocks-be-1
     environment:
       - FE_SERVERS=starrocks-fe-1:9010,starrocks-fe-2:9010,starrocks-fe-3:9010
-      - PRIORITY_NETWORKS=172.16.0.0/12
+      - PRIORITY_NETWORKS=172.19.0.0/16
     ports:
       - "9060:9060"  # HTTP port
       - "8040:8040"  # BE port
@@ -102,19 +103,27 @@ services:
       - starrocks-fe-3
     command: >
       sh -c "
-        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/be/conf/be.conf &&
+        echo 'priority_networks = 172.19.0.0/16' >> /opt/starrocks/be/conf/be.conf &&
         sleep 90 &&
         /opt/starrocks/be/bin/start_be.sh --daemon &&
-        tail -f /opt/starrocks/be/log/be.log
+        sleep 30 &&
+        while true; do
+          if [ -f /opt/starrocks/be/log/be.log ]; then
+            tail -f /opt/starrocks/be/log/be.log
+            break
+          else
+            sleep 5
+          fi
+        done
       "
 
   starrocks-be-2:
-    image: starrocks/be-ubuntu:3.2.0
+    image: starrocks/be-ubuntu:latest
     container_name: starrocks-be-2
     hostname: starrocks-be-2
     environment:
       - FE_SERVERS=starrocks-fe-1:9010,starrocks-fe-2:9010,starrocks-fe-3:9010
-      - PRIORITY_NETWORKS=172.16.0.0/12
+      - PRIORITY_NETWORKS=172.19.0.0/16
     ports:
       - "9061:9060"  # HTTP port
       - "8041:8040"  # BE port
@@ -132,19 +141,27 @@ services:
       - starrocks-be-1
     command: >
       sh -c "
-        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/be/conf/be.conf &&
+        echo 'priority_networks = 172.19.0.0/16' >> /opt/starrocks/be/conf/be.conf &&
         sleep 120 &&
         /opt/starrocks/be/bin/start_be.sh --daemon &&
-        tail -f /opt/starrocks/be/log/be.log
+        sleep 30 &&
+        while true; do
+          if [ -f /opt/starrocks/be/log/be.log ]; then
+            tail -f /opt/starrocks/be/log/be.log
+            break
+          else
+            sleep 5
+          fi
+        done
       "
 
   starrocks-be-3:
-    image: starrocks/be-ubuntu:3.2.0
+    image: starrocks/be-ubuntu:latest
     container_name: starrocks-be-3
     hostname: starrocks-be-3
     environment:
       - FE_SERVERS=starrocks-fe-1:9010,starrocks-fe-2:9010,starrocks-fe-3:9010
-      - PRIORITY_NETWORKS=172.16.0.0/12
+      - PRIORITY_NETWORKS=172.19.0.0/16
     ports:
       - "9062:9060"  # HTTP port
       - "8042:8040"  # BE port
@@ -163,10 +180,18 @@ services:
       - starrocks-be-2
     command: >
       sh -c "
-        echo 'priority_networks = 172.16.0.0/12' >> /opt/starrocks/be/conf/be.conf &&
+        echo 'priority_networks = 172.19.0.0/16' >> /opt/starrocks/be/conf/be.conf &&
         sleep 150 &&
         /opt/starrocks/be/bin/start_be.sh --daemon &&
-        tail -f /opt/starrocks/be/log/be.log
+        sleep 30 &&
+        while true; do
+          if [ -f /opt/starrocks/be/log/be.log ]; then
+            tail -f /opt/starrocks/be/log/be.log
+            break
+          else
+            sleep 5
+          fi
+        done
       "
 
 volumes:
@@ -188,4 +213,4 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.16.0.0/12 
+        - subnet: 172.19.0.0/16 
